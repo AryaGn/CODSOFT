@@ -1,0 +1,39 @@
+Chatbot = {
+    'Greetings': {
+        'input': ['hi!', 'hello!', 'hey'],
+        'respond': ['Hello, how can I assist you?', 'Hi, how are you?']
+    },
+    'good_bye': {
+        'input': ['bye'],
+        'respond': ['Have a great day']
+    },
+    'thanks': {
+        'input': ['thanks', 'thank you'],
+        'respond': ["You're welcome!"]
+    },
+    'help': {
+        'input': ['help', 'please assist me'],
+        'respond': ['I can provide you with the basics', 'I will assist you in various ways']
+    }
+}
+
+def get_response(user):
+    user = user.lower()
+    for key, values in Chatbot.items():
+        for phrase in values['input']:
+            if phrase in user:
+                return values['respond'][0]  # Return first response
+    return "I didn't understand that. Please try again."
+
+def main():
+    print("Welcome to the chatbot! Type 'quit' to exit.")
+    while True:
+        user = input("User: ")
+        if user.lower() == 'quit':
+            print("Chatbot: Goodbye!")
+            break
+        response = get_response(user)
+        print("Chatbot:", response)
+
+if __name__ == "__main__":
+    main()
